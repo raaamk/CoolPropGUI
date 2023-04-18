@@ -12,4 +12,4 @@ Eine Installation ist nicht notwendig.
 
 ## Lizenz
 
-Siehe hier die [MIT Lizenz](https://github.com/raaamk/CoolPropGUI/blob/master/LICENSE).
+Siehe [MIT Lizenz](https://github.com/raaamk/CoolPropGUI/blob/master/LICENSE).

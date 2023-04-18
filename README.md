@@ -8,6 +8,6 @@ Hier kann die aktuelle Version heruntergeladen werden: [Releases](https://github
 
 Eine Installation ist nicht notwendig.
 
-## License
+## Lizenz
 
-[MIT](https://github.com/raaamk/CoolPropGUI/blob/master/LICENSE)
+Siehe hier die [MIT Lizenz](https://github.com/raaamk/CoolPropGUI/blob/master/LICENSE).

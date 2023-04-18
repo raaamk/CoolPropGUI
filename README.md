@@ -4,7 +4,7 @@ CoolPropGUI ist ein Projekt im Rahmen einer Studienarbeit an der DHBW Mannheim. 
 
 ## Download
 
-Hier kann die aktuelle Version heruntergeladen werden: [Releases](https://choosealicense.com/licenses/mit/)
+Hier kann die aktuelle Version heruntergeladen werden: [Releases](https://github.com/raaamk/CoolPropGUI/releases)
 
 Eine Installation ist nicht notwendig.
 

@@ -3,19 +3,19 @@ import tkinter.font as tkfont
 
 
 class App:
-    def __init__(self, root):
+    def __init__(self, window):
         # setting title
-        root.title("GUI für CoolProp")
+        window.title("GUI für CoolProp")
         # setting window size
         width = 600
         height = 500
-        screenwidth = root.winfo_screenwidth()
-        screenheight = root.winfo_screenheight()
+        screenwidth = window.winfo_screenwidth()
+        screenheight = window.winfo_screenheight()
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
-        root.geometry(alignstr)
-        root.resizable(width=False, height=False)
+        window.geometry(alignstr)
+        window.resizable(width=False, height=False)
 
-        GLabel_32 = tk.Label(root)
+        GLabel_32 = tk.Label(window)
         ft = tkfont.Font(family='Times', size=10)
         GLabel_32["font"] = ft
         GLabel_32["fg"] = "#333333"
@@ -25,6 +25,6 @@ class App:
 
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = App(root)
-    root.mainloop()
+    window = tk.Tk()
+    app = App(window)
+    window.mainloop()

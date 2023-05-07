@@ -2,12 +2,18 @@ import tkinter as tk
 import tkinter.messagebox
 from tkinter import ttk
 from CoolProp import CoolProp
+from CoolProp.Plots import PropertyPlot
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+from matplotlib.backend_bases import MouseButton
+import matplotlib.pylab as plt
 
 # Creating tkinter window
 window = tk.Tk()
 window.title("FluProp")
-window.geometry("1200x800")
+window.geometry("1850x800")
 window.iconbitmap("fluprop_logo.ico")
+
 
 # Label
 fluid_label = ttk.Label(window, text="Fluid-Auswahl:", background="green", foreground="white")
@@ -126,6 +132,105 @@ def fluid_info(fluidselected):
     mfloatemp = CoolProp.PropsSI("Tmin", fluidselected)
     mfloatemp_label["text"] = "Min. Temperatur: " + str(round(mfloatemp, 3)) + " K"
 
+    #Plots
+
+    #TS
+    fig_ts_plot = Figure(figsize=(3,3))
+    ts_plot = PropertyPlot(fluidselected, 'Ts', tp_limits='ORC', figure=fig_ts_plot, unit_system="EUR")
+    ts_plot.calc_isolines(CoolProp.iQ, num=10)
+    ts_plot.show()
+
+    canvas_ts = FigureCanvasTkAgg(fig_ts_plot, master=window)
+    canvas_ts.draw()
+    canvas_ts.get_tk_widget().grid(row=0, column=6, rowspan=16, sticky="w")
+
+    toolbar = NavigationToolbar2Tk(canvas_ts, window, pack_toolbar=False)
+    toolbar.update()
+    toolbar.grid(row=17, column=6)
+
+    fig_ts_plot.tight_layout()
+
+    #PH
+    fig_ph_plot = Figure(figsize=(3,3))
+    ph_plot = PropertyPlot(fluidselected, 'ph', figure=fig_ph_plot, unit_system="EUR")
+    ph_plot.calc_isolines()
+    ph_plot.show()
+
+    canvas_ph = FigureCanvasTkAgg(fig_ph_plot, master=window)
+    canvas_ph.draw()
+    canvas_ph.get_tk_widget().grid(row=0, column=7, rowspan=16, sticky="w")
+
+    toolbar = NavigationToolbar2Tk(canvas_ph, window, pack_toolbar=False)
+    toolbar.update()
+    toolbar.grid(row=17, column=7)
+
+    fig_ph_plot.tight_layout()
+
+    #hs
+    fig_hs_plot = Figure(figsize=(3,3))
+    hs_plot = PropertyPlot(fluidselected, 'hs', figure=fig_hs_plot, unit_system="EUR")
+    hs_plot.calc_isolines()
+    hs_plot.show()
+
+    canvas_hs = FigureCanvasTkAgg(fig_hs_plot, master=window)
+    canvas_hs.draw()
+    canvas_hs.get_tk_widget().grid(row=0, column=8, rowspan=16, sticky="w")
+
+    toolbar = NavigationToolbar2Tk(canvas_hs, window, pack_toolbar=False)
+    toolbar.update()
+    toolbar.grid(row=17, column=8)
+
+    fig_hs_plot.tight_layout()
+
+    #ps
+    fig_ps_plot = Figure(figsize=(3,3))
+    ps_plot = PropertyPlot(fluidselected, 'ps', figure=fig_ps_plot, unit_system="EUR")
+    ps_plot.calc_isolines()
+    ps_plot.show()
+
+    canvas_ps = FigureCanvasTkAgg(fig_ps_plot, master=window)
+    canvas_ps.draw()
+    canvas_ps.get_tk_widget().grid(row=18, column=6, sticky="w")
+
+    toolbar = NavigationToolbar2Tk(canvas_ps, window, pack_toolbar=False)
+    toolbar.update()
+    toolbar.grid(row=19, column=6)
+
+    fig_ps_plot.tight_layout()
+
+    #td
+    fig_td_plot = Figure(figsize=(3,3))
+    td_plot = PropertyPlot(fluidselected, 'td', figure=fig_td_plot, unit_system="EUR")
+    td_plot.calc_isolines()
+    td_plot.show()
+
+    canvas_td = FigureCanvasTkAgg(fig_td_plot, master=window)
+    canvas_td.draw()
+    canvas_td.get_tk_widget().grid(row=18, column=7, sticky="w")
+
+    toolbar = NavigationToolbar2Tk(canvas_td, window, pack_toolbar=False)
+    toolbar.update()
+    toolbar.grid(row=19, column=7)
+
+    fig_td_plot.tight_layout()
+
+    #pT
+    fig_pT_plot = Figure(figsize=(3,3))
+    pT_plot = PropertyPlot(fluidselected, 'pT', figure=fig_pT_plot, unit_system="EUR")
+    pT_plot.show()
+
+    canvas_pT = FigureCanvasTkAgg(fig_pT_plot, master=window)
+    canvas_pT.draw()
+    canvas_pT.get_tk_widget().grid(row=18, column=8, sticky="w")
+
+    toolbar = NavigationToolbar2Tk(canvas_pT, window, pack_toolbar=False)
+    toolbar.update()
+    toolbar.grid(row=19, column=8)
+
+    fig_pT_plot.tight_layout()
+
+
+
 
 def on_select_fluid(event):
     fluid_info(event.widget.get())
@@ -133,6 +238,19 @@ def on_select_fluid(event):
 
 # Fluidinfos am Anfang einmal ausgeben
 fluid_info("water")
+
+def on_move(event):
+    if event.inaxes:
+        print(f'data coords {event.xdata} {event.ydata},',
+              f'pixel coords {event.x} {event.y}')
+def on_click(event):
+    if event.button is MouseButton.LEFT:
+        print('disconnecting callback')
+        plt.disconnect(binding_id)
+
+
+binding_id = plt.connect('motion_notify_event', on_move)
+plt.connect('button_press_event', on_click)
 
 # Fluid Combobox
 selected_fluid = tk.StringVar()

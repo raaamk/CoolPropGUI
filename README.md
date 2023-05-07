@@ -1,4 +1,4 @@
-[![](https://github.com/raaamk/FluProp/blob/2e3cfaa03859585afa3ff7dd744f00eec245e6c5/src/fluprop_logo.png)]()
+[![](https://github.com/raaamk/FluProp/blob/master/src/fluprop_logo.png)]()
 
 # FluProp 
 

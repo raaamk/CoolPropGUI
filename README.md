@@ -1,5 +1,3 @@
-[![](https://github.com/raaamk/FluProp/blob/master/src/fluprop_logo.png)]()
-
 # FluProp 
 
 FluProp ist ein Projekt im Rahmen einer Studienarbeit an der DHBW Mannheim. Es verwendet die Bibliothek [CoolProp](http://www.coolprop.org/index.html) zur Berechnung von thermodynamischen Stoffwerten und Erstellung von Diagrammen.

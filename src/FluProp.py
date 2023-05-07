@@ -230,7 +230,7 @@ def diagram(diagram_select):
         toolbar.grid(row=18, column=6)
 
         fig_ps_plot.tight_layout()
-    if diagram_select == "p-T-Diagramm":
+    if diagram_select == "T-ρ-Diagramm":
         fig_td_plot = Figure(figsize=(4, 4))
         td_plot = PropertyPlot(fluidselected, 'td', figure=fig_td_plot, unit_system="EUR")
         td_plot.calc_isolines()
@@ -245,7 +245,7 @@ def diagram(diagram_select):
         toolbar.grid(row=18, column=6)
 
         fig_td_plot.tight_layout()
-    if diagram_select == "T-ρ-Diagramm":
+    if diagram_select == "p-T-Diagramm":
         fig_pT_plot = Figure(figsize=(4, 4))
         pT_plot = PropertyPlot(fluidselected, 'pT', figure=fig_pT_plot, unit_system="EUR")
         pT_plot.calc_isolines(CoolProp.iQ, [0.5, 1])

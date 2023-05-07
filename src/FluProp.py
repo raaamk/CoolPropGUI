@@ -1,3 +1,4 @@
+#Packages importieren
 import tkinter as tk
 import tkinter.messagebox
 from tkinter import ttk
@@ -8,7 +9,7 @@ from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationTool
 from matplotlib.backend_bases import MouseButton
 import matplotlib.pylab as plt
 
-# Creating tkinter window
+#Fenster erstellen
 window = tk.Tk()
 window.title("FluProp")
 window.geometry("1180x480")
@@ -18,7 +19,7 @@ window.columnconfigure(3, minsize=60)
 window.columnconfigure(1, minsize=200)
 
 
-# Label
+#Auswahl Label
 fluid_label = ttk.Label(window, text="Fluid-Auswahl:", font="bold")
 fluid_label.grid(row=0, column=0, sticky="E")
 
@@ -28,7 +29,7 @@ input1_label.grid(row=1, column=0, sticky="E")
 input2_label = ttk.Label(window, text="Input-Variable 2:")
 input2_label.grid(row=2, column=0, sticky="E")
 
-# Fluid Info Label
+#Fluid Info Label
 fluidinfo_label = ttk.Label(window, text="Fluidinformationen:", font="bold")
 fluidinfo_label.grid(row=0, column=4, columnspan=2, sticky="W")
 
@@ -102,7 +103,6 @@ fluid_combobox = ttk.Combobox(window, width=50, textvariable=selected_fluid, val
 fluid_combobox.grid(row=0, column=1, columnspan=2, sticky="W")
 fluid_combobox.set("Water")
 
-
 # Input Variablen
 variables = ["Dichte ρ", "Druck p", "Temperatur T", "Spezifische Enthalpy h", "Spezifische Entropie s",
              "Dampfqualität x"]
@@ -115,9 +115,7 @@ diagram_combobox = ttk.Combobox(window, width=
 diagram_combobox.grid(row=0, column=6)
 diagram_combobox.set("T-s-Diagramm")
 
-
-
-
+#Fluid Info immer aktuell halten
 def fluid_info(fluidselected):
     pure_info = CoolProp.get_fluid_param_string(fluidselected, "pure")
     if pure_info == "true":
@@ -159,15 +157,17 @@ def fluid_info(fluidselected):
     diagram(selected_diagram.get())
 
 
-
+#Fluid Info bei Combobox Änderung
 def on_select_fluid(event):
     fluid_info(event.widget.get())
 
 
+#Diagramm bei Combobox Änderung
 def on_select_diagram(event):
     diagram(event.widget.get())
 
 
+#Diagramm aktuell halten
 def diagram(diagram_select):
     fluidselected = selected_fluid.get()
     if diagram_select == "T-s-Diagramm":
@@ -251,7 +251,6 @@ def diagram(diagram_select):
         pT_plot.calc_isolines(CoolProp.iQ, [0.5, 1])
         pT_plot.show()
 
-
         canvas_pT = FigureCanvasTkAgg(fig_pT_plot, master=window)
         canvas_pT.draw()
         canvas_pT.get_tk_widget().grid(row=1, column=6, rowspan=16)
@@ -265,6 +264,8 @@ def diagram(diagram_select):
 # Fluidinfos am Anfang einmal ausgeben
 fluid_info("water")
 
+
+#Koordinaten der Maus
 def on_move(event):
     if event.inaxes:
         print(f'data coords {event.xdata} {event.ydata},',
@@ -278,11 +279,12 @@ def on_click(event):
 binding_id = plt.connect('motion_notify_event', on_move)
 plt.connect('button_press_event', on_click)
 
+#Bei Combobox Änderung Funktionen aufrufen
 diagram_combobox.bind("<<ComboboxSelected>>", on_select_diagram)
 fluid_combobox.bind("<<ComboboxSelected>>", on_select_fluid)
 
 
-# Input 1
+#Input1
 def on_select_inpu1(event):
     selected_input1 = event.widget.get()
     if selected_input1 == "Dichte ρ":
@@ -299,21 +301,24 @@ def on_select_inpu1(event):
         input1einheit_label["text"] = "kg/kg)"
 
 
+#Input1 Combobox
 selected_variable1 = tk.StringVar()
 input1_combobox = ttk.Combobox(window, width=29, textvariable=selected_variable1, values=variables, state="readonly")
 input1_combobox.grid(row=1, column=1, sticky="W")
 input1_combobox.set("Druck p")
 input1_combobox.bind("<<ComboboxSelected>>", on_select_inpu1)
 
+#Label Input1 Einheit
 input1einheit_label = ttk.Label(window, text="Pa")
 input1einheit_label.grid(row=1, column=3, sticky="W")
 
+#Enry Input1
 input1_var = tk.StringVar()
 input1_entry = ttk.Entry(window, textvariable=input1_var)
 input1_entry.grid(row=1, column=2)
 
 
-# Input 2
+#Input2
 def on_select_inpu2(event):
     selected_input2 = event.widget.get()
     if selected_input2 == "Dichte ρ":
@@ -330,21 +335,25 @@ def on_select_inpu2(event):
         input2einheit_label["text"] = "kg/kg)"
 
 
+#Input2 Combobox
 selected_variable2 = tk.StringVar()
 input2_combobox = ttk.Combobox(window, width=29, textvariable=selected_variable2, values=variables, state="readonly")
 input2_combobox.grid(row=2, column=1, sticky="W")
 input2_combobox.set("Temperatur T")
 input2_combobox.bind("<<ComboboxSelected>>", on_select_inpu2)
 
+
+#Label Input1 Einheit
 input2einheit_label = ttk.Label(window, text="K")
 input2einheit_label.grid(row=2, column=3, sticky="W")
 
+#Enry Input1
 input2_var = tk.StringVar()
 input2_entry = ttk.Entry(window, textvariable=input2_var)
 input2_entry.grid(row=2, column=2)
 
 
-#Berechnungsfunktion
+#Berechnungsfunktion der Eigenschaften bei Button Klick
 def calc():
     if selected_variable1.get() == "Dichte ρ":
         if selected_variable2.get() == "Dichte ρ":
@@ -432,6 +441,7 @@ def calc():
 
 
 
+#Aufrufen vpn CoolProp zur Berechnung
 def prop_ausgabe(input1, input2):
     try:
         calc_temp_label["text"] = "Temperatur T= " + str(CoolProp.PropsSI("T", input1, float(input1_var.get()),
@@ -497,7 +507,7 @@ def prop_ausgabe(input1, input2):
         calc_cv_label["text"] = "Spezifische Wärmekapazität (Volumen konstant) cv="
 
 
-# Berechnen Button
+#Berechnen Button
 calc_btn = ttk.Button(window, text="Berechnen", command=calc, width=71)
 calc_btn.grid(row=3, column=0, sticky="W", columnspan=3)
 

@@ -11,86 +11,110 @@ import matplotlib.pylab as plt
 # Creating tkinter window
 window = tk.Tk()
 window.title("FluProp")
-window.geometry("1850x800")
-window.iconbitmap("fluprop_logo.ico")
+window.geometry("1180x480")
+window.resizable(False, False)
+window.columnconfigure(6, minsize=410)
+window.columnconfigure(3, minsize=60)
+window.columnconfigure(1, minsize=200)
 
 
 # Label
-fluid_label = ttk.Label(window, text="Fluid-Auswahl:", background="green", foreground="white")
-fluid_label.grid(row=0, column=0)
+fluid_label = ttk.Label(window, text="Fluid-Auswahl:", font="bold")
+fluid_label.grid(row=0, column=0, sticky="E")
 
-input1_label = ttk.Label(window, text="Input-Variable 1:", background="green", foreground="white")
-input1_label.grid(row=1, column=0)
+input1_label = ttk.Label(window, text="Input-Variable 1:")
+input1_label.grid(row=1, column=0, sticky="E")
 
-input2_label = ttk.Label(window, text="Input-Variable 2:", background="green", foreground="white")
-input2_label.grid(row=2, column=0)
+input2_label = ttk.Label(window, text="Input-Variable 2:")
+input2_label.grid(row=2, column=0, sticky="E")
 
 # Fluid Info Label
-fluidinfo_label = ttk.Label(window, text="Fluidinformationen:")
-fluidinfo_label.grid(row=0, column=4, columnspan=2)
+fluidinfo_label = ttk.Label(window, text="Fluidinformationen:", font="bold")
+fluidinfo_label.grid(row=0, column=4, columnspan=2, sticky="W")
 
 pure_info_label = ttk.Label(window)
-pure_info_label.grid(row=1, column=4)
+pure_info_label.grid(row=1, column=4, columnspan=2, sticky="W")
 molarmass_info_label = ttk.Label(window)
-molarmass_info_label.grid(row=2, column=4)
+molarmass_info_label.grid(row=2, column=4, columnspan=2, sticky="W")
 gasconstant_info_label = ttk.Label(window)
-gasconstant_info_label.grid(row=3, column=4)
+gasconstant_info_label.grid(row=3, column=4, columnspan=2, sticky="W")
 
 #Kritischer Punkt Label
-ctp_label = ttk.Label(window, text="Kritischer Punkt:")
-ctp_label.grid(row=4, column=4)
+ctp_label = ttk.Label(window, text="Kritischer Punkt:", font="bold")
+ctp_label.grid(row=4, column=4, sticky="E")
 ctp_druck_label = ttk.Label(window)
-ctp_druck_label.grid(row=4, column=5)
+ctp_druck_label.grid(row=4, column=5, sticky="W")
 ctp_temp_label = ttk.Label(window)
-ctp_temp_label.grid(row=5, column=5)
+ctp_temp_label.grid(row=5, column=5 , sticky="W")
 ctp_dichte_label = ttk.Label(window)
-ctp_dichte_label.grid(row=6, column=5)
+ctp_dichte_label.grid(row=6, column=5, sticky="W")
 
 #Tripelpunkt Label
-tp_label = ttk.Label(window, text="Tripelpunkt:")
-tp_label.grid(row=7, column=4)
+tp_label = ttk.Label(window, text="Tripelpunkt:", font="bold")
+tp_label.grid(row=7, column=4, sticky="E")
 tp_druck_label = ttk.Label(window)
-tp_druck_label.grid(row=7, column=5)
+tp_druck_label.grid(row=7, column=5, sticky="W")
 tp_temp_label = ttk.Label(window)
-tp_temp_label.grid(row=8, column=5)
+tp_temp_label.grid(row=8, column=5, sticky="W")
 
 #Fluidgrenzen Label
-limit_label = ttk.Label(window, text="Fluidgrenzen:")
-limit_label.grid(row=9, column=4)
+limit_label = ttk.Label(window, text="Fluidgrenzen:", font="bold")
+limit_label.grid(row=9, column=4, sticky="E")
 maxtemp_label = ttk.Label(window)
-maxtemp_label.grid(row=9, column=5)
+maxtemp_label.grid(row=9, column=5, sticky="W")
 mfloatemp_label = ttk.Label(window)
-mfloatemp_label.grid(row=10, column=5)
+mfloatemp_label.grid(row=10, column=5, sticky="W")
 maxp_label = ttk.Label(window)
-maxp_label.grid(row=11, column=5)
+maxp_label.grid(row=11, column=5, sticky="W")
 minp_label = ttk.Label(window)
-minp_label.grid(row=12, column=5)
+minp_label.grid(row=12, column=5, sticky="W")
 
 #Berechnete Eigenschaften Label
 calc_temp_label = ttk.Label(window)
-calc_temp_label.grid(row=5, column=1, columnspan=2)
+calc_temp_label.grid(row=4, column=0, columnspan=3, sticky="W")
 calc_p_label = ttk.Label(window)
-calc_p_label.grid(row=6, column=1, columnspan=2)
+calc_p_label.grid(row=5, column=0, columnspan=3, sticky="W")
 calc_vq_label = ttk.Label(window)
-calc_vq_label.grid(row=7, column=1, columnspan=2)
+calc_vq_label.grid(row=6, column=0, columnspan=3, sticky="W")
 calc_sound_label = ttk.Label(window)
-calc_sound_label.grid(row=8, column=1, columnspan=2)
+calc_sound_label.grid(row=7, column=0, columnspan=3, sticky="W")
 calc_d_label = ttk.Label(window)
-calc_d_label.grid(row=9, column=1, columnspan=2)
+calc_d_label.grid(row=8, column=0, columnspan=3, sticky="W")
 calc_h_label = ttk.Label(window)
-calc_h_label.grid(row=10, column=1, columnspan=2)
+calc_h_label.grid(row=9, column=0, columnspan=3, sticky="W")
 calc_s_label = ttk.Label(window)
-calc_s_label.grid(row=11, column=1, columnspan=2)
+calc_s_label.grid(row=10, column=0, columnspan=3, sticky="W")
 calc_u_label = ttk.Label(window)
-calc_u_label.grid(row=12, column=1, columnspan=2)
+calc_u_label.grid(row=11, column=0, columnspan=3, sticky="W")
 calc_v_label = ttk.Label(window)
-calc_v_label.grid(row=13, column=1, columnspan=2)
+calc_v_label.grid(row=12, column=0, columnspan=3, sticky="W")
 calc_st_label = ttk.Label(window)
-calc_st_label.grid(row=14, column=1, columnspan=2)
+calc_st_label.grid(row=13, column=0, columnspan=3, sticky="W")
 calc_cp_label = ttk.Label(window)
-calc_cp_label.grid(row=15, column=1, columnspan=2)
+calc_cp_label.grid(row=14, column=0, columnspan=3, sticky="W")
 calc_cv_label = ttk.Label(window)
-calc_cv_label.grid(row=16, column=1, columnspan=2)
+calc_cv_label.grid(row=15, column=0, columnspan=3, sticky="W")
+
+# Fluid Combobox
+selected_fluid = tk.StringVar()
+cp_fluids = CoolProp.FluidsList()
+fluid_combobox = ttk.Combobox(window, width=50, textvariable=selected_fluid, values=cp_fluids, state="readonly")
+fluid_combobox.grid(row=0, column=1, columnspan=2, sticky="W")
+fluid_combobox.set("Water")
+
+
+# Input Variablen
+variables = ["Dichte ρ", "Druck p", "Temperatur T", "Spezifische Enthalpy h", "Spezifische Entropie s",
+             "Dampfqualität x"]
+
+#Diagramm Combobox
+diagrams = ["T-s-Diagramm", "p-h-Diagramm", "h-s-Diagramm", "p-s-Diagram", "p-T-Diagramm", "T-ρ-Diagramm"]
+selected_diagram = tk.StringVar()
+diagram_combobox = ttk.Combobox(window, width=
+40, textvariable=selected_diagram, values=diagrams, state="readonly")
+diagram_combobox.grid(row=0, column=6)
+diagram_combobox.set("T-s-Diagramm")
+
 
 
 
@@ -132,109 +156,111 @@ def fluid_info(fluidselected):
     mfloatemp = CoolProp.PropsSI("Tmin", fluidselected)
     mfloatemp_label["text"] = "Min. Temperatur: " + str(round(mfloatemp, 3)) + " K"
 
-    #Plots
-
-    #TS
-    fig_ts_plot = Figure(figsize=(3,3))
-    ts_plot = PropertyPlot(fluidselected, 'Ts', tp_limits='ORC', figure=fig_ts_plot, unit_system="EUR")
-    ts_plot.calc_isolines(CoolProp.iQ, num=10)
-    ts_plot.show()
-
-    canvas_ts = FigureCanvasTkAgg(fig_ts_plot, master=window)
-    canvas_ts.draw()
-    canvas_ts.get_tk_widget().grid(row=0, column=6, rowspan=16, sticky="w")
-
-    toolbar = NavigationToolbar2Tk(canvas_ts, window, pack_toolbar=False)
-    toolbar.update()
-    toolbar.grid(row=17, column=6)
-
-    fig_ts_plot.tight_layout()
-
-    #PH
-    fig_ph_plot = Figure(figsize=(3,3))
-    ph_plot = PropertyPlot(fluidselected, 'ph', figure=fig_ph_plot, unit_system="EUR")
-    ph_plot.calc_isolines()
-    ph_plot.show()
-
-    canvas_ph = FigureCanvasTkAgg(fig_ph_plot, master=window)
-    canvas_ph.draw()
-    canvas_ph.get_tk_widget().grid(row=0, column=7, rowspan=16, sticky="w")
-
-    toolbar = NavigationToolbar2Tk(canvas_ph, window, pack_toolbar=False)
-    toolbar.update()
-    toolbar.grid(row=17, column=7)
-
-    fig_ph_plot.tight_layout()
-
-    #hs
-    fig_hs_plot = Figure(figsize=(3,3))
-    hs_plot = PropertyPlot(fluidselected, 'hs', figure=fig_hs_plot, unit_system="EUR")
-    hs_plot.calc_isolines()
-    hs_plot.show()
-
-    canvas_hs = FigureCanvasTkAgg(fig_hs_plot, master=window)
-    canvas_hs.draw()
-    canvas_hs.get_tk_widget().grid(row=0, column=8, rowspan=16, sticky="w")
-
-    toolbar = NavigationToolbar2Tk(canvas_hs, window, pack_toolbar=False)
-    toolbar.update()
-    toolbar.grid(row=17, column=8)
-
-    fig_hs_plot.tight_layout()
-
-    #ps
-    fig_ps_plot = Figure(figsize=(3,3))
-    ps_plot = PropertyPlot(fluidselected, 'ps', figure=fig_ps_plot, unit_system="EUR")
-    ps_plot.calc_isolines()
-    ps_plot.show()
-
-    canvas_ps = FigureCanvasTkAgg(fig_ps_plot, master=window)
-    canvas_ps.draw()
-    canvas_ps.get_tk_widget().grid(row=18, column=6, sticky="w")
-
-    toolbar = NavigationToolbar2Tk(canvas_ps, window, pack_toolbar=False)
-    toolbar.update()
-    toolbar.grid(row=19, column=6)
-
-    fig_ps_plot.tight_layout()
-
-    #td
-    fig_td_plot = Figure(figsize=(3,3))
-    td_plot = PropertyPlot(fluidselected, 'td', figure=fig_td_plot, unit_system="EUR")
-    td_plot.calc_isolines()
-    td_plot.show()
-
-    canvas_td = FigureCanvasTkAgg(fig_td_plot, master=window)
-    canvas_td.draw()
-    canvas_td.get_tk_widget().grid(row=18, column=7, sticky="w")
-
-    toolbar = NavigationToolbar2Tk(canvas_td, window, pack_toolbar=False)
-    toolbar.update()
-    toolbar.grid(row=19, column=7)
-
-    fig_td_plot.tight_layout()
-
-    #pT
-    fig_pT_plot = Figure(figsize=(3,3))
-    pT_plot = PropertyPlot(fluidselected, 'pT', figure=fig_pT_plot, unit_system="EUR")
-    pT_plot.show()
-
-    canvas_pT = FigureCanvasTkAgg(fig_pT_plot, master=window)
-    canvas_pT.draw()
-    canvas_pT.get_tk_widget().grid(row=18, column=8, sticky="w")
-
-    toolbar = NavigationToolbar2Tk(canvas_pT, window, pack_toolbar=False)
-    toolbar.update()
-    toolbar.grid(row=19, column=8)
-
-    fig_pT_plot.tight_layout()
-
+    diagram(selected_diagram.get())
 
 
 
 def on_select_fluid(event):
     fluid_info(event.widget.get())
 
+
+def on_select_diagram(event):
+    diagram(event.widget.get())
+
+
+def diagram(diagram_select):
+    fluidselected = selected_fluid.get()
+    if diagram_select == "T-s-Diagramm":
+        fig_ts_plot = Figure(figsize=(4, 4))
+        ts_plot = PropertyPlot(fluidselected, 'Ts', tp_limits='ORC', figure=fig_ts_plot, unit_system="EUR")
+        ts_plot.calc_isolines(CoolProp.iQ, num=10)
+        ts_plot.show()
+
+        canvas_ts = FigureCanvasTkAgg(fig_ts_plot, master=window)
+        canvas_ts.draw()
+        canvas_ts.get_tk_widget().grid(row=1, column=6, rowspan=16)
+
+        toolbar = NavigationToolbar2Tk(canvas_ts, window, pack_toolbar=False)
+        toolbar.update()
+        toolbar.grid(row=18, column=6)
+
+        fig_ts_plot.tight_layout()
+    if diagram_select == "p-h-Diagramm":
+        fig_ph_plot = Figure(figsize=(4, 4))
+        ph_plot = PropertyPlot(fluidselected, 'ph', figure=fig_ph_plot, unit_system="EUR")
+        ph_plot.calc_isolines()
+        ph_plot.show()
+
+        canvas_ph = FigureCanvasTkAgg(fig_ph_plot, master=window)
+        canvas_ph.draw()
+        canvas_ph.get_tk_widget().grid(row=1, column=6, rowspan=16)
+
+        toolbar = NavigationToolbar2Tk(canvas_ph, window, pack_toolbar=False)
+        toolbar.update()
+        toolbar.grid(row=18, column=6)
+
+        fig_ph_plot.tight_layout()
+    if diagram_select == "h-s-Diagramm":
+        fig_hs_plot = Figure(figsize=(4, 4))
+        hs_plot = PropertyPlot(fluidselected, 'hs', figure=fig_hs_plot, unit_system="EUR")
+        hs_plot.calc_isolines()
+        hs_plot.show()
+
+        canvas_hs = FigureCanvasTkAgg(fig_hs_plot, master=window)
+        canvas_hs.draw()
+        canvas_hs.get_tk_widget().grid(row=1, column=6, rowspan=16)
+
+        toolbar = NavigationToolbar2Tk(canvas_hs, window, pack_toolbar=False)
+        toolbar.update()
+        toolbar.grid(row=18, column=6)
+
+        fig_hs_plot.tight_layout()
+    if diagram_select == "p-s-Diagram":
+        fig_ps_plot = Figure(figsize=(4, 4))
+        ps_plot = PropertyPlot(fluidselected, 'ps', figure=fig_ps_plot, unit_system="EUR")
+        ps_plot.calc_isolines()
+        ps_plot.show()
+
+        canvas_ps = FigureCanvasTkAgg(fig_ps_plot, master=window)
+        canvas_ps.draw()
+        canvas_ps.get_tk_widget().grid(row=1, column=6, rowspan=16)
+
+        toolbar = NavigationToolbar2Tk(canvas_ps, window, pack_toolbar=False)
+        toolbar.update()
+        toolbar.grid(row=18, column=6)
+
+        fig_ps_plot.tight_layout()
+    if diagram_select == "p-T-Diagramm":
+        fig_td_plot = Figure(figsize=(4, 4))
+        td_plot = PropertyPlot(fluidselected, 'td', figure=fig_td_plot, unit_system="EUR")
+        td_plot.calc_isolines()
+        td_plot.show()
+
+        canvas_td = FigureCanvasTkAgg(fig_td_plot, master=window)
+        canvas_td.draw()
+        canvas_td.get_tk_widget().grid(row=1, column=6, rowspan=16)
+
+        toolbar = NavigationToolbar2Tk(canvas_td, window, pack_toolbar=False)
+        toolbar.update()
+        toolbar.grid(row=18, column=6)
+
+        fig_td_plot.tight_layout()
+    if diagram_select == "T-ρ-Diagramm":
+        fig_pT_plot = Figure(figsize=(4, 4))
+        pT_plot = PropertyPlot(fluidselected, 'pT', figure=fig_pT_plot, unit_system="EUR")
+        pT_plot.calc_isolines(CoolProp.iQ, [0.5, 1])
+        pT_plot.show()
+
+
+        canvas_pT = FigureCanvasTkAgg(fig_pT_plot, master=window)
+        canvas_pT.draw()
+        canvas_pT.get_tk_widget().grid(row=1, column=6, rowspan=16)
+
+        toolbar = NavigationToolbar2Tk(canvas_pT, window, pack_toolbar=False)
+        toolbar.update()
+        toolbar.grid(row=18, column=6)
+
+        fig_pT_plot.tight_layout()
 
 # Fluidinfos am Anfang einmal ausgeben
 fluid_info("water")
@@ -252,17 +278,8 @@ def on_click(event):
 binding_id = plt.connect('motion_notify_event', on_move)
 plt.connect('button_press_event', on_click)
 
-# Fluid Combobox
-selected_fluid = tk.StringVar()
-cp_fluids = CoolProp.FluidsList()
-fluid_combobox = ttk.Combobox(window, width=40, textvariable=selected_fluid, values=cp_fluids, state="readonly")
-fluid_combobox.grid(row=0, column=1, columnspan=2)
-fluid_combobox.set("Water")
+diagram_combobox.bind("<<ComboboxSelected>>", on_select_diagram)
 fluid_combobox.bind("<<ComboboxSelected>>", on_select_fluid)
-
-# Input Variablen
-variables = ["Dichte ρ", "Druck p", "Temperatur T", "Spezifische Enthalpy h", "Spezifische Entropie s",
-             "Dampfqualität x"]
 
 
 # Input 1
@@ -283,13 +300,13 @@ def on_select_inpu1(event):
 
 
 selected_variable1 = tk.StringVar()
-input1_combobox = ttk.Combobox(window, width=20, textvariable=selected_variable1, values=variables, state="readonly")
-input1_combobox.grid(row=1, column=1)
+input1_combobox = ttk.Combobox(window, width=29, textvariable=selected_variable1, values=variables, state="readonly")
+input1_combobox.grid(row=1, column=1, sticky="W")
 input1_combobox.set("Druck p")
 input1_combobox.bind("<<ComboboxSelected>>", on_select_inpu1)
 
-input1einheit_label = ttk.Label(window, text="Pa", background="green", foreground="white")
-input1einheit_label.grid(row=1, column=3)
+input1einheit_label = ttk.Label(window, text="Pa")
+input1einheit_label.grid(row=1, column=3, sticky="W")
 
 input1_var = tk.StringVar()
 input1_entry = ttk.Entry(window, textvariable=input1_var)
@@ -314,13 +331,13 @@ def on_select_inpu2(event):
 
 
 selected_variable2 = tk.StringVar()
-input2_combobox = ttk.Combobox(window, width=20, textvariable=selected_variable2, values=variables, state="readonly")
-input2_combobox.grid(row=2, column=1)
+input2_combobox = ttk.Combobox(window, width=29, textvariable=selected_variable2, values=variables, state="readonly")
+input2_combobox.grid(row=2, column=1, sticky="W")
 input2_combobox.set("Temperatur T")
 input2_combobox.bind("<<ComboboxSelected>>", on_select_inpu2)
 
-input2einheit_label = ttk.Label(window, text="K", background="green", foreground="white")
-input2einheit_label.grid(row=2, column=3)
+input2einheit_label = ttk.Label(window, text="K")
+input2einheit_label.grid(row=2, column=3, sticky="W")
 
 input2_var = tk.StringVar()
 input2_entry = ttk.Entry(window, textvariable=input2_var)
@@ -481,8 +498,8 @@ def prop_ausgabe(input1, input2):
 
 
 # Berechnen Button
-calc_btn = ttk.Button(window, text="Berechnen", command=calc)
-calc_btn.grid(row=3, column=0)
+calc_btn = ttk.Button(window, text="Berechnen", command=calc, width=71)
+calc_btn.grid(row=3, column=0, sticky="W", columnspan=3)
 
 # Infinite Loop
 window.mainloop()

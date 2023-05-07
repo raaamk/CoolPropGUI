@@ -7,6 +7,7 @@ from CoolProp import CoolProp
 window = tk.Tk()
 window.title("FluProp")
 window.geometry("1200x800")
+window.iconbitmap("fluprop_logo.ico")
 
 # Label
 fluid_label = ttk.Label(window, text="Fluid-Auswahl:", background="green", foreground="white")

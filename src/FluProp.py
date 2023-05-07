@@ -174,7 +174,7 @@ def diagram(diagram_select):
         fig_ts_plot = Figure(figsize=(4, 4))
         ts_plot = PropertyPlot(fluidselected, 'Ts', tp_limits='ORC', figure=fig_ts_plot, unit_system="EUR")
         ts_plot.calc_isolines(CoolProp.iQ, num=10)
-        ts_plot.show()
+        ts_plot.draw()
 
         canvas_ts = FigureCanvasTkAgg(fig_ts_plot, master=window)
         canvas_ts.draw()
@@ -189,7 +189,7 @@ def diagram(diagram_select):
         fig_ph_plot = Figure(figsize=(4, 4))
         ph_plot = PropertyPlot(fluidselected, 'ph', figure=fig_ph_plot, unit_system="EUR")
         ph_plot.calc_isolines()
-        ph_plot.show()
+        ph_plot.draw()
 
         canvas_ph = FigureCanvasTkAgg(fig_ph_plot, master=window)
         canvas_ph.draw()
@@ -204,7 +204,7 @@ def diagram(diagram_select):
         fig_hs_plot = Figure(figsize=(4, 4))
         hs_plot = PropertyPlot(fluidselected, 'hs', figure=fig_hs_plot, unit_system="EUR")
         hs_plot.calc_isolines()
-        hs_plot.show()
+        hs_plot.draw()
 
         canvas_hs = FigureCanvasTkAgg(fig_hs_plot, master=window)
         canvas_hs.draw()
@@ -219,7 +219,7 @@ def diagram(diagram_select):
         fig_ps_plot = Figure(figsize=(4, 4))
         ps_plot = PropertyPlot(fluidselected, 'ps', figure=fig_ps_plot, unit_system="EUR")
         ps_plot.calc_isolines()
-        ps_plot.show()
+        ps_plot.draw()
 
         canvas_ps = FigureCanvasTkAgg(fig_ps_plot, master=window)
         canvas_ps.draw()
@@ -234,7 +234,7 @@ def diagram(diagram_select):
         fig_td_plot = Figure(figsize=(4, 4))
         td_plot = PropertyPlot(fluidselected, 'td', figure=fig_td_plot, unit_system="EUR")
         td_plot.calc_isolines()
-        td_plot.show()
+        td_plot.draw()
 
         canvas_td = FigureCanvasTkAgg(fig_td_plot, master=window)
         canvas_td.draw()
@@ -249,7 +249,7 @@ def diagram(diagram_select):
         fig_pT_plot = Figure(figsize=(4, 4))
         pT_plot = PropertyPlot(fluidselected, 'pT', figure=fig_pT_plot, unit_system="EUR")
         pT_plot.calc_isolines(CoolProp.iQ, [0.5, 1])
-        pT_plot.show()
+        pT_plot.draw()
 
         canvas_pT = FigureCanvasTkAgg(fig_pT_plot, master=window)
         canvas_pT.draw()

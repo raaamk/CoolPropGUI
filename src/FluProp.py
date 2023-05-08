@@ -12,7 +12,7 @@ import matplotlib.pylab as plt
 # Fenster erstellen
 window = tk.Tk()
 window.title("FluProp")
-window.geometry("1180x480")
+window.geometry("1200x480")
 window.resizable(False, False)
 window.columnconfigure(6, minsize=410)
 window.columnconfigure(3, minsize=60)
@@ -275,7 +275,7 @@ pT_plot = PropertyPlot(fluidselected, 'pT', figure=fig_pT_plot, unit_system="EUR
 def diagram(diagram_select):
     if diagram_select == "T-s-Diagramm":
         fig_ts_plot = Figure(figsize=(4, 4))
-        ts_plot = PropertyPlot(fluidselected, 'Ts', tp_limits='ORC', figure=fig_ts_plot, unit_system="EUR")
+        ts_plot = PropertyPlot(fluidselected, 'Ts', tp_limits='ORC', figure=fig_ts_plot, unit_system="SI")
         ts_plot.calc_isolines(CoolProp.iQ, num=10)
         ts_plot.draw()
 
@@ -294,7 +294,7 @@ def diagram(diagram_select):
         ts_plot.draw_process(state)
     if diagram_select == "p-h-Diagramm":
         fig_ph_plot = Figure(figsize=(4, 4))
-        ph_plot = PropertyPlot(fluidselected, 'ph', figure=fig_ph_plot, unit_system="EUR")
+        ph_plot = PropertyPlot(fluidselected, 'ph', figure=fig_ph_plot, unit_system="SI")
         ph_plot.calc_isolines()
         ph_plot.draw()
 
@@ -313,7 +313,7 @@ def diagram(diagram_select):
         ph_plot.draw_process(state)
     if diagram_select == "h-s-Diagramm":
         fig_hs_plot = Figure(figsize=(4, 4))
-        hs_plot = PropertyPlot(fluidselected, 'hs', figure=fig_hs_plot, unit_system="EUR")
+        hs_plot = PropertyPlot(fluidselected, 'hs', figure=fig_hs_plot, unit_system="SI")
         hs_plot.calc_isolines()
         hs_plot.draw()
 
@@ -332,7 +332,7 @@ def diagram(diagram_select):
         hs_plot.draw_process(state)
     if diagram_select == "p-s-Diagram":
         fig_ps_plot = Figure(figsize=(4, 4))
-        ps_plot = PropertyPlot(fluidselected, 'ps', figure=fig_ps_plot, unit_system="EUR")
+        ps_plot = PropertyPlot(fluidselected, 'ps', figure=fig_ps_plot, unit_system="SI")
         ps_plot.calc_isolines()
         ps_plot.draw()
 
@@ -351,7 +351,7 @@ def diagram(diagram_select):
         ps_plot.draw_process(state)
     if diagram_select == "T-ρ-Diagramm":
         fig_td_plot = Figure(figsize=(4, 4))
-        td_plot = PropertyPlot(fluidselected, 'td', figure=fig_td_plot, unit_system="EUR")
+        td_plot = PropertyPlot(fluidselected, 'td', figure=fig_td_plot, unit_system="SI")
         td_plot.calc_isolines()
         td_plot.draw()
 
@@ -370,7 +370,7 @@ def diagram(diagram_select):
         td_plot.draw_process(state)
     if diagram_select == "p-T-Diagramm":
         fig_pT_plot = Figure(figsize=(4, 4))
-        pT_plot = PropertyPlot(fluidselected, 'pT', figure=fig_pT_plot, unit_system="EUR")
+        pT_plot = PropertyPlot(fluidselected, 'pT', figure=fig_pT_plot, unit_system="SI")
         pT_plot.calc_isolines(CoolProp.iQ, [0.5, 1])
         pT_plot.draw()
 

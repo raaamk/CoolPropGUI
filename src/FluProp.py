@@ -1,4 +1,4 @@
-# Packages importieren
+# Import Packages
 import tkinter as tk
 import tkinter.messagebox
 from tkinter import ttk
@@ -9,7 +9,7 @@ from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationTool
 from matplotlib.backend_bases import MouseButton
 import matplotlib.pylab as plt
 
-# Fenster erstellen
+# Create Window
 window = tk.Tk()
 window.title("FluProp")
 window.geometry("1200x480")
@@ -18,7 +18,7 @@ window.columnconfigure(6, minsize=410)
 window.columnconfigure(3, minsize=60)
 window.columnconfigure(1, minsize=200)
 
-# Auswahl Label
+# Create Label
 fluid_label = ttk.Label(window, text="Fluid-Auswahl:", font="bold")
 fluid_label.grid(row=0, column=0, sticky="E")
 
@@ -39,25 +39,25 @@ molarmass_info_label.grid(row=2, column=4, columnspan=2, sticky="W")
 gasconstant_info_label = ttk.Label(window)
 gasconstant_info_label.grid(row=3, column=4, columnspan=2, sticky="W")
 
-# Kritischer Punkt Label
+# Critical Point Label
 ctp_label = ttk.Label(window, text="Kritischer Punkt:", font="bold")
 ctp_label.grid(row=4, column=4, sticky="E")
-ctp_druck_label = ttk.Label(window)
-ctp_druck_label.grid(row=4, column=5, sticky="W")
+ctp_pressure_label = ttk.Label(window)
+ctp_pressure_label.grid(row=4, column=5, sticky="W")
 ctp_temp_label = ttk.Label(window)
 ctp_temp_label.grid(row=5, column=5, sticky="W")
-ctp_dichte_label = ttk.Label(window)
-ctp_dichte_label.grid(row=6, column=5, sticky="W")
+ctp_den_label = ttk.Label(window)
+ctp_den_label.grid(row=6, column=5, sticky="W")
 
-# Tripelpunkt Label
+# Triple Point Label
 tp_label = ttk.Label(window, text="Tripelpunkt:", font="bold")
 tp_label.grid(row=7, column=4, sticky="E")
-tp_druck_label = ttk.Label(window)
-tp_druck_label.grid(row=7, column=5, sticky="W")
+tp_pressure_label = ttk.Label(window)
+tp_pressure_label.grid(row=7, column=5, sticky="W")
 tp_temp_label = ttk.Label(window)
 tp_temp_label.grid(row=8, column=5, sticky="W")
 
-# Fluidgrenzen Label
+# Fluidlimits Label
 limit_label = ttk.Label(window, text="Fluidgrenzen:", font="bold")
 limit_label.grid(row=9, column=4, sticky="E")
 maxtemp_label = ttk.Label(window)
@@ -69,7 +69,7 @@ maxp_label.grid(row=11, column=5, sticky="W")
 minp_label = ttk.Label(window)
 minp_label.grid(row=12, column=5, sticky="W")
 
-# Berechnete Eigenschaften Label
+# Calculated Prop Label
 calc_temp_label = ttk.Label(window)
 calc_temp_label.grid(row=4, column=0, columnspan=5, sticky="W")
 calc_p_label = ttk.Label(window)
@@ -102,12 +102,12 @@ fluid_combobox = ttk.Combobox(window, width=50, textvariable=selected_fluid, val
 fluid_combobox.grid(row=0, column=1, columnspan=2, sticky="W")
 fluid_combobox.set("Water")
 
-#Variablen
+# Variables
 variables = ["Dichte ρ", "Druck p", "Temperatur T", "Spezifische Enthalpy h", "Spezifische Entropie s",
              "Dampfqualität x"]
 
 state = StateContainer()
-#Erster Zustandspunkt zeichen (sehr weit außerhalb)
+# Draw first state point (very far outside)
 state[0, "T"] = -10e100
 state[0, "S"] = -10e100
 state[0, "P"] = -10e100
@@ -128,17 +128,17 @@ diagram_combobox.set("T-s-Diagramm")
 def on_select_inpu1(event):
     selected_input1 = event.widget.get()
     if selected_input1 == "Dichte ρ":
-        input1einheit_label["text"] = "kg/m^3"
+        input1unit_label["text"] = "kg/m^3"
     elif selected_input1 == "Druck p":
-        input1einheit_label["text"] = "Pa"
+        input1unit_label["text"] = "Pa"
     elif selected_input1 == "Temperatur T":
-        input1einheit_label["text"] = "K"
+        input1unit_label["text"] = "K"
     elif selected_input1 == "Spezifische Enthalpy h":
-        input1einheit_label["text"] = "J/kg"
+        input1unit_label["text"] = "J/kg"
     elif selected_input1 == "Spezifische Entropie s":
-        input1einheit_label["text"] = "J/(kg·K)"
+        input1unit_label["text"] = "J/(kg·K)"
     elif selected_input1 == "Dampfqualität x":
-        input1einheit_label["text"] = "kg/kg)"
+        input1unit_label["text"] = "kg/kg)"
 
 
 # Input1 Combobox
@@ -148,11 +148,11 @@ input1_combobox.grid(row=1, column=1, sticky="W")
 input1_combobox.set("Druck p")
 input1_combobox.bind("<<ComboboxSelected>>", on_select_inpu1)
 
-# Label Input1 Einheit
-input1einheit_label = ttk.Label(window, text="Pa")
-input1einheit_label.grid(row=1, column=3, sticky="W")
+# Label Input1 Unit
+input1unit_label = ttk.Label(window, text="Pa")
+input1unit_label.grid(row=1, column=3, sticky="W")
 
-# Enry Input1
+# Entry Input1
 input1_var = tk.StringVar()
 input1_entry = ttk.Entry(window, textvariable=input1_var)
 input1_entry.grid(row=1, column=2)
@@ -162,17 +162,17 @@ input1_entry.grid(row=1, column=2)
 def on_select_inpu2(event):
     selected_input2 = event.widget.get()
     if selected_input2 == "Dichte ρ":
-        input2einheit_label["text"] = "kg/m^3"
+        input2unit_label["text"] = "kg/m^3"
     elif selected_input2 == "Druck p":
-        input2einheit_label["text"] = "Pa"
+        input2unit_label["text"] = "Pa"
     elif selected_input2 == "Temperatur T":
-        input2einheit_label["text"] = "K"
+        input2unit_label["text"] = "K"
     elif selected_input2 == "Spezifische Enthalpy h":
-        input2einheit_label["text"] = "J/kg"
+        input2unit_label["text"] = "J/kg"
     elif selected_input2 == "Spezifische Entropie s":
-        input2einheit_label["text"] = "J/(kg·K)"
+        input2unit_label["text"] = "J/(kg·K)"
     elif selected_input2 == "Dampfqualität x":
-        input2einheit_label["text"] = "kg/kg)"
+        input2unit_label["text"] = "kg/kg)"
 
 
 # Input2 Combobox
@@ -182,17 +182,17 @@ input2_combobox.grid(row=2, column=1, sticky="W")
 input2_combobox.set("Temperatur T")
 input2_combobox.bind("<<ComboboxSelected>>", on_select_inpu2)
 
-# Label Input1 Einheit
-input2einheit_label = ttk.Label(window, text="K")
-input2einheit_label.grid(row=2, column=3, sticky="W")
+# Label Input1 Unit
+input2unit_label = ttk.Label(window, text="K")
+input2unit_label.grid(row=2, column=3, sticky="W")
 
-# Enry Input1
+# Entry Input1
 input2_var = tk.StringVar()
 input2_entry = ttk.Entry(window, textvariable=input2_var)
 input2_entry.grid(row=2, column=2)
 
 
-# Fluid Info immer aktuell halten
+# Fluid Info refresh
 def fluid_info(fluidselected):
     pure_info = CoolProp.get_fluid_param_string(fluidselected, "pure")
     if pure_info == "true":
@@ -200,28 +200,28 @@ def fluid_info(fluidselected):
     elif pure_info == "false":
         pure_info_label["text"] = "Reines Fluid: Nein"
 
-    # Molare Masse
+    # Molar Mass
     molarmass_info = CoolProp.PropsSI("M", fluidselected)
     molarmass_info_label["text"] = "Molare Masse: " + str(round(molarmass_info * 1000, 4)) + " g/mol"
     gascostant = CoolProp.PropsSI("gas_constant", fluidselected)
     gasconstant_info_label["text"] = "Spezifische Gaskonstante: " + str(
         round(gascostant / molarmass_info, 1)) + " J/kg/K"
 
-    # Kritischer Punkt
-    ctp_druck = CoolProp.PropsSI("pcrit", fluidselected)
-    ctp_druck_label["text"] = "Druck: " + str(ctp_druck) + " Pa"
+    # Critical Point
+    ctp_pressure = CoolProp.PropsSI("pcrit", fluidselected)
+    ctp_pressure_label["text"] = "Druck: " + str(ctp_pressure) + " Pa"
     ctp_temp = CoolProp.PropsSI("Tcrit", fluidselected)
     ctp_temp_label["text"] = "Temperatur: " + str(ctp_temp) + " K"
-    ctp_dichte = CoolProp.PropsSI("rhocrit", fluidselected)
-    ctp_dichte_label["text"] = "Dichte: " + str(round(ctp_dichte, 1)) + " kg/m^3"
+    ctp_den = CoolProp.PropsSI("rhocrit", fluidselected)
+    ctp_den_label["text"] = "Dichte: " + str(round(ctp_den, 1)) + " kg/m^3"
 
-    # Tripelpunkt
-    tp_druck = CoolProp.PropsSI("ptriple", fluidselected)
-    tp_druck_label["text"] = "Druck: " + str(tp_druck) + " Pa"
+    # Triple Point
+    tp_pressure = CoolProp.PropsSI("ptriple", fluidselected)
+    tp_pressure_label["text"] = "Druck: " + str(tp_pressure) + " Pa"
     tp_temp = CoolProp.PropsSI("Ttriple", fluidselected)
     tp_temp_label["text"] = "Temperatur: " + str(tp_temp) + " K"
 
-    # Fluidgrenzen
+    # Fluidlimits
     maxp = CoolProp.PropsSI("pmax", fluidselected)
     maxp_label["text"] = "Max. Druck: " + str(maxp) + " Pa"
     maxtemp = CoolProp.PropsSI("Tmax", fluidselected)
@@ -234,22 +234,22 @@ def fluid_info(fluidselected):
     diagram(selected_diagram.get())
 
 
-# Fluid Info bei Combobox Änderung
+# Fluid Info at Combobox Change
 def on_select_fluid(event):
     fluid_info(event.widget.get())
 
 
-# Diagramm bei Combobox Änderung
+# Diagramm at Combobox Change
 def on_select_diagram(event):
     diagram(event.widget.get())
 
 
-#Bei Klick in ein Diagramm
+# Click Event Diagram
 def mouse_event(event):
     print('x: {} and y: {}'.format(event.xdata, event.ydata))
 
 
-# Plots erstellen
+# Creating Plots
 fluidselected = selected_fluid.get()
 
 fig_ts_plot = Figure(figsize=(4, 4))
@@ -271,7 +271,7 @@ fig_pT_plot = Figure(figsize=(4, 4))
 pT_plot = PropertyPlot(fluidselected, 'pT', figure=fig_pT_plot, unit_system="EUR")
 
 
-# Diagramm aktuell halten
+# Keep Diagrams up-to-date
 def diagram(diagram_select):
     if diagram_select == "T-s-Diagramm":
         fig_ts_plot = Figure(figsize=(4, 4))
@@ -389,11 +389,11 @@ def diagram(diagram_select):
         pT_plot.draw_process(state)
 
 
-# Fluidinfos am Anfang einmal ausgeben
+# At Start Output Fluid Info
 fluid_info("water")
 
 
-# Koordinaten der Maus
+# Coordinates Mouse
 def on_move(event):
     if event.inaxes:
         print(f'data coords {event.xdata} {event.ydata},',
@@ -409,12 +409,12 @@ def on_click(event):
 binding_id = plt.connect('motion_notify_event', on_move)
 plt.connect('button_press_event', on_click)
 
-# Bei Combobox Änderung Funktionen aufrufen
+# At Combobox Change call Function
 diagram_combobox.bind("<<ComboboxSelected>>", on_select_diagram)
 fluid_combobox.bind("<<ComboboxSelected>>", on_select_fluid)
 
 
-# Berechnungsfunktion der Eigenschaften bei Button Klick
+# Calc Function for the Properties
 def calc():
     if selected_variable1.get() == "Dichte ρ":
         if selected_variable2.get() == "Dichte ρ":
@@ -423,68 +423,68 @@ def calc():
             tkinter.messagebox.showwarning("Warnung",
                                            "Dieses Paar von Eingabevariablen ist nicht möglich! Bitte eine andere Kombination wählen.")
         elif selected_variable2.get() == "Temperatur T":
-            prop_ausgabe("D", "T", float(input1_var.get()), float(input2_var.get()))
+            prop_output("D", "T", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Spezifische Enthalpy h":
-            prop_ausgabe("D", "H", float(input1_var.get()), float(input2_var.get()))
+            prop_output("D", "H", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Spezifische Entropie s":
-            prop_ausgabe("D", "S", float(input1_var.get()), float(input2_var.get()))
+            prop_output("D", "S", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Dampfqualität x":
-            prop_ausgabe("D", "Q", float(input1_var.get()), float(input2_var.get()))
+            prop_output("D", "Q", float(input1_var.get()), float(input2_var.get()))
 
     if selected_variable1.get() == "Druck p":
         if selected_variable2.get() == "Dichte ρ":
-            prop_ausgabe("P", "D", float(input1_var.get()), float(input2_var.get()))
+            prop_output("P", "D", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Druck p":
             tkinter.messagebox.showwarning("Warnung", "Bitte zwei unterschiedliche Variablen zur Berechnung wählen!")
         elif selected_variable2.get() == "Temperatur T":
-            prop_ausgabe("P", "T", float(input1_var.get()), float(input2_var.get()))
+            prop_output("P", "T", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Spezifische Enthalpy h":
-            prop_ausgabe("P", "H", float(input1_var.get()), float(input2_var.get()))
+            prop_output("P", "H", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Spezifische Entropie s":
-            prop_ausgabe("P", "S", float(input1_var.get()), float(input2_var.get()))
+            prop_output("P", "S", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Dampfqualität x":
-            prop_ausgabe("P", "Q", float(input1_var.get()), float(input2_var.get()))
+            prop_output("P", "Q", float(input1_var.get()), float(input2_var.get()))
 
     if selected_variable1.get() == "Temperatur T":
         if selected_variable2.get() == "Dichte ρ":
-            prop_ausgabe("T", "D", float(input1_var.get()), float(input2_var.get()))
+            prop_output("T", "D", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Druck p":
-            prop_ausgabe("T", "P", float(input1_var.get()), float(input2_var.get()))
+            prop_output("T", "P", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Temperatur T":
             tkinter.messagebox.showwarning("Warnung", "Bitte zwei unterschiedliche Variablen zur Berechnung wählen!")
         elif selected_variable2.get() == "Spezifische Enthalpy h":
             tkinter.messagebox.showwarning("Warnung",
                                            "Dieses Paar von Eingabevariablen ist nicht möglich! Bitte eine andere Kombination wählen.")
         elif selected_variable2.get() == "Spezifische Entropie s":
-            prop_ausgabe("T", "S", float(input1_var.get()), float(input2_var.get()))
+            prop_output("T", "S", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Dampfqualität x":
-            prop_ausgabe("T", "Q", float(input1_var.get()), float(input2_var.get()))
+            prop_output("T", "Q", float(input1_var.get()), float(input2_var.get()))
 
     if selected_variable1.get() == "Spezifische Enthalpy h":
         if selected_variable2.get() == "Dichte ρ":
-            prop_ausgabe("H", "D", float(input1_var.get()), float(input2_var.get()))
+            prop_output("H", "D", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Druck p":
-            prop_ausgabe("H", "P", float(input1_var.get()), float(input2_var.get()))
+            prop_output("H", "P", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Temperatur T":
             tkinter.messagebox.showwarning("Warnung",
                                            "Dieses Paar von Eingabevariablen ist nicht möglich! Bitte eine andere Kombination wählen.")
         elif selected_variable2.get() == "Spezifische Enthalpy h":
             tkinter.messagebox.showwarning("Warnung", "Bitte zwei unterschiedliche Variablen zur Berechnung wählen!")
         elif selected_variable2.get() == "Spezifische Entropie s":
-            prop_ausgabe("H", "S", float(input1_var.get()), float(input2_var.get()))
+            prop_output("H", "S", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Dampfqualität x":
             tkinter.messagebox.showwarning("Warnung",
                                            "Dieses Paar von Eingabevariablen ist nicht möglich! Bitte eine andere Kombination wählen.")
 
     if selected_variable1.get() == "Spezifische Entropie s":
         if selected_variable2.get() == "Dichte ρ":
-            prop_ausgabe("S", "D", float(input1_var.get()), float(input2_var.get()))
+            prop_output("S", "D", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Druck p":
-            prop_ausgabe("S", "P", float(input1_var.get()), float(input2_var.get()))
+            prop_output("S", "P", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Temperatur T":
-            prop_ausgabe("S", "T", float(input1_var.get()), float(input2_var.get()))
+            prop_output("S", "T", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Spezifische Enthalpy h":
-            prop_ausgabe("S", "H", float(input1_var.get()), float(input2_var.get()))
+            prop_output("S", "H", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Spezifische Entropie s":
             tkinter.messagebox.showwarning("Warnung", "Bitte zwei unterschiedliche Variablen zur Berechnung wählen!")
         elif selected_variable2.get() == "Dampfqualität x":
@@ -493,11 +493,11 @@ def calc():
 
     if selected_variable1.get() == "Dampfqualität x":
         if selected_variable2.get() == "Dichte ρ":
-            prop_ausgabe("Q", "D", float(input1_var.get()), float(input2_var.get()))
+            prop_output("Q", "D", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Druck p":
-            prop_ausgabe("Q", "P", float(input1_var.get()), float(input2_var.get()))
+            prop_output("Q", "P", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Temperatur T":
-            prop_ausgabe("Q", "T", float(input1_var.get()), float(input2_var.get()))
+            prop_output("Q", "T", float(input1_var.get()), float(input2_var.get()))
         elif selected_variable2.get() == "Spezifische Enthalpy h":
             tkinter.messagebox.showwarning("Warnung",
                                            "Dieses Paar von Eingabevariablen ist nicht möglich! Bitte eine andere Kombination wählen.")
@@ -510,30 +510,34 @@ def calc():
     diagram(selected_diagram.get())
 
 
-# Aufrufen vpn CoolProp zur Berechnung
-def prop_ausgabe(input1, input2, var1, var2):
-    state[0, "T"] = CoolProp.PropsSI("T", input1, var1,
-                                     input2, var2,
-                                     selected_fluid.get())
-    state[0, "S"] = CoolProp.PropsSI("S", input1,
-                                     var1, input2,
-                                     var2,
-                                     selected_fluid.get())
-    state[0, "P"] = CoolProp.PropsSI("P", input1, var1, input2,
-                                     var2,
-                                     selected_fluid.get())
-    state[0, "H"] = CoolProp.PropsSI("H", input1,
-                                     var1, input2,
-                                     var2,
-                                     selected_fluid.get())
-    state[0, "D"] = CoolProp.PropsSI("D", input1, var1,
-                                     input2, var2,
-                                     selected_fluid.get())
+# Output to the Labels
+def prop_output(input1, input2, var1, var2):
+    calc_temp = CoolProp.PropsSI("T", input1, var1,
+                                 input2, var2,
+                                 selected_fluid.get())
+    calc_s = CoolProp.PropsSI("S", input1,
+                              var1, input2,
+                              var2,
+                              selected_fluid.get())
+    calc_p = CoolProp.PropsSI("P", input1, var1, input2,
+                              var2,
+                              selected_fluid.get())
+    calc_h = CoolProp.PropsSI("H", input1,
+                              var1, input2,
+                              var2,
+                              selected_fluid.get())
+    calc_d = CoolProp.PropsSI("D", input1, var1,
+                              input2, var2,
+                              selected_fluid.get())
+
+    state[0, "T"] = calc_temp
+    state[0, "S"] = calc_s
+    state[0, "P"] = calc_p
+    state[0, "H"] = calc_h
+    state[0, "D"] = calc_d
 
     try:
-        calc_temp_label["text"] = "Temperatur T= " + str(CoolProp.PropsSI("T", input1, var1,
-                                                                          input2, var2,
-                                                                          selected_fluid.get())) + " K"
+        calc_temp_label["text"] = "Temperatur T= " + str(calc_temp) + " K"
     except:
         calc_temp_label["text"] = "Temperatur T="
     try:
@@ -543,10 +547,7 @@ def prop_ausgabe(input1, input2, var1, var2):
     except:
         calc_p_label["text"] = "Druck p="
     try:
-        calc_vq_label["text"] = "Dampfqualität x= " + str(round(CoolProp.PropsSI("Q", input1,
-                                                                                 var1, input2,
-                                                                                 var2,
-                                                                                 selected_fluid.get()), 6)) + " kg/kg"
+        calc_vq_label["text"] = "Dampfqualität x= " + str(round(calc_p, 6)) + " kg/kg"
     except:
         calc_vq_label["text"] = "Dampfqualität x="
     try:
@@ -559,25 +560,16 @@ def prop_ausgabe(input1, input2, var1, var2):
     except:
         calc_sound_label["text"] = "Schallgeschwindigkeit c="
     try:
-        calc_d_label["text"] = "Dichte ρ= " + str(round(CoolProp.PropsSI("D", input1, var1,
-                                                                         input2, var2,
-                                                                         selected_fluid.get()), 6)) + " kg/m^3"
+        calc_d_label["text"] = "Dichte ρ= " + str(round(calc_d, 6)) + " kg/m^3"
     except:
         calc_d_label["text"] = "Dichte ρ="
     try:
-        calc_h_label["text"] = "Spezifische Enthalpie h= " + str(round(CoolProp.PropsSI("H", input1,
-                                                                                        var1, input2,
-                                                                                        var2,
-                                                                                        selected_fluid.get()),
+        calc_h_label["text"] = "Spezifische Enthalpie h= " + str(round(calc_h,
                                                                        6)) + " J/kg"
     except:
         calc_h_label["text"] = "Spezifische Enthalpie h="
     try:
-        calc_s_label["text"] = "Spezifische Entropie s= " + str(round(CoolProp.PropsSI("S", input1,
-                                                                                       var1, input2,
-                                                                                       var2,
-                                                                                       selected_fluid.get()),
-                                                                      6)) + " J/kg/K"
+        calc_s_label["text"] = "Spezifische Entropie s= " + str(round(calc_s, 6)) + " J/kg/K"
     except:
         calc_s_label["text"] = "Spezifische Entropie s="
     try:
@@ -617,17 +609,18 @@ def prop_ausgabe(input1, input2, var1, var2):
         calc_cv_label["text"] = "Spezifische Wärmekapazität (Volumen konstant) cv="
 
 
+# Use of Return Key
 def return_calc(event):
     calc()
 
 
-# Berechnen Button
+# Create Calc Button
 calc_btn = ttk.Button(window, text="Berechnen", command=calc, width=71)
 calc_btn.grid(row=3, column=0, sticky="W", columnspan=3)
 window.bind("<Return>", return_calc)
 
 
-# Infinite Loop & Fenster schließen
+# Infinite Loop & Close Window
 def on_closing():
     if tkinter.messagebox.askyesno("FluProp schließen", "Möchtest du FluProp beenden?"):
         window.destroy()

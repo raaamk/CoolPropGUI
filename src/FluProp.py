@@ -107,11 +107,12 @@ variables = ["Dichte ρ", "Druck p", "Temperatur T", "Spezifische Enthalpy h", "
              "Dampfqualität x"]
 
 state = StateContainer()
-state[0, "T"] = 0
-state[0, "S"] = 0
-state[0, "P"] = 0
-state[0, "H"] = 0
-state[0, "D"] = 0
+#Erster Zustandspunkt zeichen (sehr weit außerhalb)
+state[0, "T"] = -10e100
+state[0, "S"] = -10e100
+state[0, "P"] = -10e100
+state[0, "H"] = -10e100
+state[0, "D"] = -10e100
 
 diagrams = ["T-s-Diagramm", "p-h-Diagramm", "h-s-Diagramm", "p-s-Diagram", "p-T-Diagramm", "T-ρ-Diagramm"]
 

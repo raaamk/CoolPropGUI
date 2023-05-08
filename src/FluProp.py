@@ -342,7 +342,6 @@ input2_combobox.grid(row=2, column=1, sticky="W")
 input2_combobox.set("Temperatur T")
 input2_combobox.bind("<<ComboboxSelected>>", on_select_inpu2)
 
-
 #Label Input1 Einheit
 input2einheit_label = ttk.Label(window, text="K")
 input2einheit_label.grid(row=2, column=3, sticky="W")

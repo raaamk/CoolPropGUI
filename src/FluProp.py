@@ -515,6 +515,8 @@ calc_btn.grid(row=3, column=0, sticky="W", columnspan=3)
 def on_closing():
     if tkinter.messagebox.askyesno("FluProp schließen", "Möchtest du FluProp beenden?"):
         window.destroy()
+        plt.close("all")
+
 
 
 window.protocol("WM_DELETE_WINDOW", on_closing)

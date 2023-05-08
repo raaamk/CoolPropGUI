@@ -510,5 +510,12 @@ def prop_ausgabe(input1, input2):
 calc_btn = ttk.Button(window, text="Berechnen", command=calc, width=71)
 calc_btn.grid(row=3, column=0, sticky="W", columnspan=3)
 
-# Infinite Loop
+# Infinite Loop & Fenster schließen
+def on_closing():
+    if tkinter.messagebox.askyesno("FluProp schließen", "Möchtest du FluProp beenden?"):
+        window.destroy()
+
+
+window.protocol("WM_DELETE_WINDOW", on_closing)
 window.mainloop()
+

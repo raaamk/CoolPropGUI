@@ -4,7 +4,7 @@ FluProp ist ein Projekt im Rahmen einer Studienarbeit an der DHBW Mannheim. Es v
 
 ## Download
 
-Hier kann die aktuelle Version heruntergeladen werden: [Releases](https://github.com/raaamk/CoolPropGUI/releases)
+Hier kann die aktuelle Version heruntergeladen werden: [Releases](https://github.com/raaamk/FluProp/releases)
 
 Eine Installation ist nicht notwendig.
 

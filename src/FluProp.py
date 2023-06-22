@@ -273,6 +273,7 @@ pT_plot = PropertyPlot(fluidselected, 'pT', figure=fig_pT_plot, unit_system="EUR
 
 # Keep Diagrams up-to-date
 def diagram(diagram_select):
+    fluidselected = selected_fluid.get()
     if diagram_select == "T-s-Diagramm":
         fig_ts_plot = Figure(figsize=(4, 4))
         ts_plot = PropertyPlot(fluidselected, 'Ts', tp_limits='ORC', figure=fig_ts_plot, unit_system="SI")

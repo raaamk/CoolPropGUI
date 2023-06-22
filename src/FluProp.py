@@ -240,7 +240,6 @@ def on_select_fluid(event):
     calc()
 
 
-
 # Diagramm at Combobox Change
 def on_select_diagram(event):
     diagram(event.widget.get())

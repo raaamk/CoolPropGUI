@@ -237,6 +237,7 @@ def fluid_info(fluidselected):
 # Fluid Info at Combobox Change
 def on_select_fluid(event):
     fluid_info(event.widget.get())
+    calc()
 
 
 # Diagramm at Combobox Change
